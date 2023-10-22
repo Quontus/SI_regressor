@@ -125,4 +125,4 @@
           results = apply_model(model, X_train, X_test, y_train, y_test)
           results_list.append(results)
       return results_list
-  ```sh
+  ```
