@@ -56,6 +56,7 @@
   ```
   <!-- Метод главных компонент -->
   ### Метод главных компонент
+  
     ```sh
     def reduce_dimensionality(df, variance_threshold):
         if variance_threshold == 1:
@@ -93,4 +94,4 @@
         df_reduced['target'] = y
         df_reduced.dropna(inplace=True)
         return df_reduced
-    ```
+      ```
