@@ -33,3 +33,14 @@
   ```sh
   df_1 = df_1.drop(['CC50-MDCK, mmg/ml', 'IC50, mmg/ml', 'S_leng', 'Molecular weight'], axis=1)
   ```
+  <!-- Получение набора данных по выбранному набору дескрипторов -->
+  ## Implementation
+  ```sh
+  def morgan_fingerprint(df):
+    mols = df['SMILES'].to_list()
+    mols = list(map(Chem.MolFromSmiles, mols))
+    descrs = [morgan_binary_features_generator(mol) for mol in mols]
+    df_with_new_desc = pd.DataFrame(descrs)
+    df_with_new_desc['target'] = list(df['SI'])
+    return df_with_new_desc
+  ```
