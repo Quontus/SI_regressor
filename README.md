@@ -97,3 +97,32 @@
       df_reduced.dropna(inplace=True)
       return df_reduced
   ```
+  <!-- Модели -->
+  ### Модели
+  ```sh
+  def apply_model(model, X_train, X_test, y_train, y_test):
+      y_pred = model(X_train, X_test, y_train, y_test)
+      mape, rmse, mse, mae, predict_volume = results(y_test, y_pred)
+      # graf(y_test, y_pred)
+      return mape, rmse, mse, mae, predict_volume, model.__name__
+  
+  def apply_models(X_train, y_train, X_test, y_test, skip_svr=False):
+      models = [
+          XGBRegressor_model,
+          linear_regression_model,
+          lasso_regression_model,
+          ridge_regression_model,
+          random_forest_regression_model,
+          gradient_boosting_regression_model,
+          svr_regression_model
+          Neural_model
+      ]
+      results_list = []
+      for model in models:
+          if skip_svr and model == svr_regression_model:
+              continue
+          # print(f'Работа с моделью {model}')
+          results = apply_model(model, X_train, X_test, y_train, y_test)
+          results_list.append(results)
+      return results_list
+  ```sh
