@@ -54,3 +54,43 @@
       y_test = test_data['target']
       return X_train, y_train, X_test, y_test
   ```
+  <!-- Метод главных компонент -->
+  ### Метод главных компонент
+    ```sh
+    def reduce_dimensionality(df, variance_threshold):
+        if variance_threshold == 1:
+            return df
+        # Разделите DataFrame на матрицу признаков X и столбец target y
+        X = df.drop(columns=['target'])
+        y = df['target']
+    
+        # Создайте объект PCA и обучите его
+        pca = PCA()
+        pca.fit(X)
+    
+        # Определите количество компонент, чтобы объяснить заданный уровень дисперсии
+        explained_variance = pca.explained_variance_ratio_
+        cumulative_variance = explained_variance.cumsum()
+    
+        n_components = np.argmax(cumulative_variance >= variance_threshold) + 1
+    
+        # # Создайте график зависимости дисперсии от количества компонент
+        # plt.figure(figsize=(10, 6))
+        # plt.plot(range(1, len(explained_variance) + 1), cumulative_variance, marker='o', linestyle='--', color='b')
+        # plt.xlabel('Number of Components')
+        # plt.ylabel('Cumulative Explained Variance')
+        # plt.title('Cumulative Explained Variance vs. Number of Components')
+        # plt.grid()
+    
+        # Создайте новый объект PCA с выбранным количеством компонент
+        pca_selected = PCA(n_components=n_components)
+    
+        # Примените PCA к данным
+        X_reduced = pca_selected.fit_transform(X)
+    
+        # Создайте DataFrame с сокращенными признаками и добавьте столбец target обратно
+        df_reduced = pd.DataFrame(X_reduced, columns=[f'PC{i+1}' for i in range(n_components)])
+        df_reduced['target'] = y
+        df_reduced.dropna(inplace=True)
+        return df_reduced
+    ```
