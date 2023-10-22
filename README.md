@@ -45,6 +45,7 @@
 
   <!-- Разбиение new_df на тест и стади -->
   ### Разбиение new_df на test и train
+  
   ```sh
   def data_set_cut(new_df, fraction):
       train_data, test_data = train_test_split(new_df, train_size=fraction, random_state=42)
@@ -54,6 +55,7 @@
       y_test = test_data['target']
       return X_train, y_train, X_test, y_test
   ```
+
   <!-- Метод главных компонент -->
   ### Метод главных компонент
   
