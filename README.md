@@ -1,2 +1,2 @@
-### SI_regressor[BBC]
+# SI_regressor[BBC]
 Решение задачи регрессии на основе показателя 'SI'
