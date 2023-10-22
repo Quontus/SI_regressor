@@ -97,3 +97,5 @@
       df_reduced.dropna(inplace=True)
       return df_reduced
   ```
+
+  # После этого последовательно запускаем все остальные ячейки кода
