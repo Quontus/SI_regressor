@@ -4,3 +4,6 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 ### Installation
+  ```sh
+  !pip install requirements.txt
+  ```
