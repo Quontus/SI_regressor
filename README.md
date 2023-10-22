@@ -21,3 +21,11 @@
   df_1 = df_1.drop(['Title', 'Pictures', 'Hydrogen bond acceptors', 'Hydrogen bond donors', 'Polar SA'], axis=1)
   # df_1.describe()
   ```
+  ```sh
+  df_1 = df_1[df_1['IC50, mmg/ml'] < 250]
+  df_1 = df_1[df_1['CC50-MDCK, mmg/ml'] < 500]
+  df_1 = df_1[df_1['SI'] <= 100]
+  df_1 = df_1[(df_1['S_leng'] <= 200) & (0 <= df_1['S_leng'])]
+  df_1 = df_1[df_1['Molecular weight'] <= 1250]
+  df_1 = df_1.dropna()
+  ```
