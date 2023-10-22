@@ -11,6 +11,9 @@
   ```
 <!-- Implementation -->
 ## Implementation
+
+### Загрузка и предобработка данных
+
   ```sh
   df_1 = pd.read_excel('1400.xlsx', sheet_name='Smile-IC50-CC50')
   df_1['SI'] = df_1['CC50-MDCK, mmg/ml']/df_1['IC50, mmg/ml']
