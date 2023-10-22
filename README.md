@@ -126,3 +126,40 @@
           results_list.append(results)
       return results_list
   ```
+  <!-- Запуск -->
+  ### Запуск
+  ```sh
+  dataframes = {
+    "Дескриптор 1": new_df_1,
+    # "Дескриптор 2": new_df_2,
+    "Дескриптор 3": new_df_3
+  }
+  
+  best_metrics = {
+      metric: [float('inf'), '', '', '', ''] if metric != 'predict_volume' else [float('-inf'), '', '', '', '']
+      for metric in ["mape", "rmse", "mse", "mae", "predict_volume"]
+  }
+  
+  pca_levels = [0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1]
+  fraction_levels = [0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
+  
+  for df_name, new_df in dataframes.items():
+      for pca_level in pca_levels:
+          pca_df = reduce_dimensionality(new_df, pca_level)
+          for fraction in fraction_levels:
+              X_train, y_train, X_test, y_test = data_set_cut(pca_df, fraction)
+              skip_svr = df_name == "Дескриптор 2"
+              results_list = apply_models(X_train, y_train, X_test, y_test, skip_svr)
+              for mape, rmse, mse, mae, predict_volume, model_name in results_list:
+                  for metric, value in zip(["mape", "rmse", "mse", "mae", "predict_volume"], [mape, rmse, mse, mae, predict_volume]):
+                      if metric == 'predict_volume':
+                          if value > best_metrics[metric][0]:
+                              best_metrics[metric] = [value, model_name, df_name, pca_level, fraction]
+                      else:
+                          if value < best_metrics[metric][0]:
+                              best_metrics[metric] = [value, model_name, df_name, pca_level, fraction]
+  
+  print("Лучшие результаты:")
+  for metric in ["mape", "rmse", "mse", "mae", "predict_volume"]:
+      print(f"{metric.upper()}: {best_metrics[metric][0]} в модели {best_metrics[metric][1]} с дескриптором {best_metrics[metric][2]} с уровнем дисперсии {best_metrics[metric][3]} c тренировочной выборкой {best_metrics[metric][4]}")
+  ```
