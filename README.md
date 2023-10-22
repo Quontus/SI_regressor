@@ -1,4 +1,4 @@
-# SI_regressor[BBC]
+# SI_regressor[Bold Byte Coders]
 ### Решение задачи регрессии на основе показателя 'SI'
 
 <!-- GETTING STARTED -->
