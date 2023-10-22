@@ -29,3 +29,7 @@
   df_1 = df_1[df_1['Molecular weight'] <= 1250]
   df_1 = df_1.dropna()
   ```
+  ### Оставляем только колонку SI и SMILES
+  ```sh
+  df_1 = df_1.drop(['CC50-MDCK, mmg/ml', 'IC50, mmg/ml', 'S_leng', 'Molecular weight'], axis=1)
+  ```
