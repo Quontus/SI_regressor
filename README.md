@@ -10,7 +10,7 @@
   pip install requirements.txt
   ```
 <!-- Implementation -->
-## Implementation
+## Implementation(нужно будет последовательно запускать все ячейки кода из файла, ниже приведены примеры функций ячеек)
 
 ### Загрузка и предобработка данных
 
@@ -97,5 +97,3 @@
       df_reduced.dropna(inplace=True)
       return df_reduced
   ```
-
-  # После этого последовательно запускаем все остальные ячейки кода
