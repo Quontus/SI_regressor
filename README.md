@@ -5,5 +5,5 @@
 ## Getting Started
 ### Installation
   ```sh
-  $ pip install requirements.txt
+  '$' pip install requirements.txt
   ```
